@@ -18,7 +18,7 @@ public class CsvGenerator {
   private static final long TARGET_FILE_SIZE_BYTES = 50L * 1024L * 1024L; // 100 MB
 
   // File path where the CSV will be saved
-  private static final String FILE_PATH = "large_test_data_100mb.csv"; // Changed file name
+  private static final String FILE_PATH = "../large_test_data_50mb.csv"; // Changed file name
 
   // Fixed length of a typical data row (used for size estimation)
   // externalId (10 digits) + quantity (4 digits) + name (15 chars) + date (10 chars) + 3 commas + 1 newline
