@@ -65,7 +65,7 @@ public class BackgroundCsvProcessor {
     long totalRows = 0;
     try {
       updateStatus(jobId, jobStatus, "COUNTING_ROWS", "Determining total row count...", 0, 0);
-      // Use a dedicated method for fast line counting
+      // Use a dedicated method for fast line / row counting
       totalRows = countLines(permanentFile);
       updateStatus(jobId, jobStatus, "COUNTING_COMPLETE", "Total rows found: " + totalRows, 0, totalRows);
     } catch (IOException e) {
