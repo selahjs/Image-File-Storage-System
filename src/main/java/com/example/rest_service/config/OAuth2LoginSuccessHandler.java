@@ -5,6 +5,7 @@ import com.example.rest_service.service.AuthenticationService;
 import com.example.rest_service.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
@@ -16,6 +17,10 @@ import java.io.IOException;
 
 @Component
 public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+
+  // Inject the URL from properties
+  @Value("${application.frontend.url}")
+  private String frontendUrl;
 
   private final AuthenticationService authService; // Inject the service
 
@@ -40,7 +45,8 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
     // Your frontend should grab this token from the URL and store it in LocalStorage
     // OAuth2LoginSuccessHandler.java
     String targetUrl = String.format(
-            "http://localhost:3000/oauth2/redirect?token=%s&username=%s",
+            "%s/oauth2/redirect?token=%s&username=%s",
+            frontendUrl,
             authResponse.token(),
             authResponse.username() // Assuming your DTO has this
     );
